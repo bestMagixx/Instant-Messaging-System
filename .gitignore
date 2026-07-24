@@ -36,3 +36,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+### Release 构建产物（含配置与凭据，不入库；仅保留说明文件）###
+Release/*.jar

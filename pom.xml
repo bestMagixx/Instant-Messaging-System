@@ -17,9 +17,11 @@
     </parent>
 
     <modules>
-        <module>service</module>
         <module>common</module>
         <module>codec</module>
+        <module>service</module>
+        <module>tcp</module>
+        <module>im-message-store</module>
     </modules>
 
     <properties>
