@@ -3,13 +3,13 @@ spring:
     active: dev
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: t5y6q1p0
+    password: {mySQLPassword}
     url: jdbc:mysql://localhost:3306/im-core?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
     username: root
   redis:
-    host: 192.168.74.128
+    host: {RedisAddress}
     port: 6379
-    password: zxc594567
+    password: {RedisPassword}
     jedis:
       pool:
         max-active: 100
@@ -47,8 +47,8 @@ spring:
     allow-circular-references: true
 
 appConfig:
-  privateKey: 123456
-  zkAddr: 192.168.74.128:2181 #zk连接地址
+  privateKey: {zookeeper密码 }
+  zkAddr: {zookeeperAddress }:2181 #zk连接地址
   zkConnectTimeOut: 10000 #zk超时时间
   imRouteWay: 2 #路由策略1.随机  2.轮询  3.一致性hash
   consistentHashWay: 1 # 如果选用一致性hash的话具体hash算法  1.TreeMap 2.自定义Map
