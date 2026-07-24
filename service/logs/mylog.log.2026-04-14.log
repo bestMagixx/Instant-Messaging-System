@@ -1,0 +1,10 @@
+2026-04-14 22:43:48 -HV000001: Hibernate Validator 6.2.5.Final
+2026-04-14 22:43:48 -Starting ApplicationTests using Java 17.0.16 on LAPTOP-ARPJN8NB with PID 39156 (started by Lenovo in D:\Java_Study\Java_projects\im-system\service)
+2026-04-14 22:43:48 -The following 1 profile is active: "dev"
+2026-04-14 22:43:49 -Multiple Spring Data modules found, entering strict repository configuration mode
+2026-04-14 22:43:49 -Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-04-14 22:43:49 -Finished Spring Data repository scanning in 21 ms. Found 0 Redis repository interfaces.
+2026-04-14 22:43:50 -class com.lld.im.service.friendship.dao.ImFriendShipEntity ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-04-14 22:43:50 -class com.lld.im.service.user.dao.ImUserDataEntity ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-04-14 22:43:51 -class com.lld.im.service.group.dao.ImGroupMessageHistoryEntity ,Not found @TableId annotation, Cannot use Mybatis-Plus 'xxById' Method.
+2026-04-14 22:43:51 -Started ApplicationTests in 3.54 seconds (JVM running for 4.228)

@@ -1,0 +1,36 @@
+package com.lld.im.service.friendship.model.req;
+
+import com.lld.im.common.enums.FriendShipStatusEnum;
+import com.lld.im.common.model.RequestBase;
+import com.lld.im.service.friendship.dao.mapper.ImFriendShipMapper;
+import jdk.jfr.DataAmount;
+import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.validation.constraints.NotBlank;
+import java.util.List;
+
+@Data
+public class ImporFriendShipReq extends RequestBase {
+
+    @Autowired
+    ImFriendShipMapper imFriendShipMapper;
+
+    @NotBlank(message = "fromId不能为空")
+    private String fromId;
+
+    private List<ImportFriendDto> friendItem;
+
+    @Data
+    public static class ImportFriendDto{
+        private String toId;
+
+        private String remark;
+
+        private String addSource;
+
+        private Integer status = FriendShipStatusEnum.FRIEND_STATUS_NO_FRIEND.getCode();
+
+        private Integer black = FriendShipStatusEnum.BLACK_STATUS_NORMAL.getCode();
+    }
+}
