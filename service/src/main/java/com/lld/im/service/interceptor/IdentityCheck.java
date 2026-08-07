@@ -2,12 +2,14 @@ package com.lld.im.service.interceptor;
 
 import com.alibaba.fastjson.JSONObject;
 import com.lld.im.common.BaseErrorCode;
+import com.lld.im.common.ResponseVO;
 import com.lld.im.common.config.AppConfig;
 import com.lld.im.common.constant.Constants;
 import com.lld.im.common.enums.GateWayErrorCode;
-import com.lld.im.common.enums.command.SystemCommand;
+import com.lld.im.common.enums.ImUserTypeEnum;
 import com.lld.im.common.exception.ApplicationExceptionEnum;
 import com.lld.im.common.utils.SigAPI;
+import com.lld.im.service.user.dao.ImUserDataEntity;
 import com.lld.im.service.user.service.ImUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -54,6 +56,7 @@ public class IdentityCheck {
         //取出解密后的appId 和 操作人 和 过期时间做匹配，不通过则提示错误
         Long expireTime = 0L;
         Long expireSec = 0L;
+        Long time = 0L;
         String decoderAppId = "";
         String decoderIdentifier = "";
 
@@ -62,6 +65,7 @@ public class IdentityCheck {
             decoderIdentifier = jsonObject.getString("TLS.identifier");
             String expireStr = jsonObject.get("TLS.expire").toString();
             String expireTimeStr = jsonObject.get("TLS.expireTime").toString();
+            time = Long.valueOf(expireTimeStr);
             expireSec = Long.valueOf(expireStr);
             expireTime = Long.valueOf(expireTimeStr) + expireSec;
         }catch (Exception e){
@@ -86,15 +90,34 @@ public class IdentityCheck {
         }
 
         //appId + “xxx” + userId + sign
+        String genSig = sigAPI.genUserSig(identifier, expireSec, time, null);
+        if (genSig.equalsIgnoreCase(userSig)) {
+            String key = appId + ":" + Constants.RedisConstants.userSign + ":"
+                    + identifier + userSig;
 
-        String key = appId + ":" + Constants.RedisConstants.userSign + ":"
-                + identifier + userSig;
+            Long eTime = expireTime - System.currentTimeMillis() / 1000;
+            stringRedisTemplate.opsForValue().set(
+                    key,expireTime.toString(),eTime , TimeUnit.SECONDS
+            );
+            this.setIsAdmin(identifier,Integer.valueOf(appId));
+            return BaseErrorCode.SUCCESS;
+        }
+        return GateWayErrorCode.USERSIGN_IS_ERROR;
+    }
 
-        Long eTime = expireTime - System.currentTimeMillis() / 1000;
-        stringRedisTemplate.opsForValue().set(
-                key,expireTime.toString(),eTime , TimeUnit.SECONDS
-        );
-
-        return BaseErrorCode.SUCCESS;
+    /**
+     * 根据appid,identifier判断是否App管理员,并设置到RequestHolder
+     * @param identifier
+     * @param appId
+     * @return
+     */
+    public void setIsAdmin(String identifier, Integer appId) {
+        //去DB或Redis中查找, 后面写
+        ResponseVO<ImUserDataEntity> singleUserInfo = imUserService.getSingleUserInfo(identifier, appId);
+        if(singleUserInfo.isOk()){
+            RequestHolder.set(singleUserInfo.getData().getUserType() == ImUserTypeEnum.APP_ADMIN.getCode());
+        }else{
+            RequestHolder.set(false);
+        }
     }
 }

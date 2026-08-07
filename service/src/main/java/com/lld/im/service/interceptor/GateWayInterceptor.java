@@ -59,6 +59,12 @@ public class GateWayInterceptor implements HandlerInterceptor {
         return true;
     }
 
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        //请求结束后清理 ThreadLocal，避免 admin 身份在请求线程上残留，被后续请求误读
+        RequestHolder.remove();
+    }
+
     private void resp(ResponseVO responseVO, HttpServletResponse response){
 
         PrintWriter writer = null;

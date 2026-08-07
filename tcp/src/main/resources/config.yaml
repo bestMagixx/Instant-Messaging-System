@@ -15,13 +15,13 @@ lim:
   redis:
     mode: single # 单机模式：single 哨兵模式：sentinel 集群模式：cluster
     database: 0
-    password: {redisPassword }
-    timeout: 3000 # 超时时间
+    password: zxc594567 # Redis 密码，无密码可留空（直接留空即可）
+    timeout: 10000 # 超时时间
     poolMinIdle: 8 #最小空闲数
     poolConnTimeout: 3000 # 连接超时时间(毫秒)
     poolSize: 10 # 连接池大小
     single: #redis单机配置
-      address: { RedisAddress }:6379
+      address: 192.168.74.128:6379 # Redis 单机地址:端口
 
   rabbitmq:
     host: 127.0.0.1
@@ -31,5 +31,5 @@ lim:
     password: guest
 
   zkConfig:
-    zkAddr: {zookeeperAddress }:2181
+    zkAddr: 192.168.74.128:2181 # Zookeeper 地址:端口
     zkConnectTimeOut: 10000

@@ -23,6 +23,7 @@ import com.lld.im.service.group.service.ImGroupMemberService;
 import com.lld.im.service.group.service.ImGroupService;
 import com.lld.im.service.user.dao.ImUserDataEntity;
 import com.lld.im.service.user.service.ImUserService;
+import com.lld.im.service.interceptor.RequestHolder;
 import com.lld.im.service.utils.CallbackService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -153,7 +154,7 @@ public class ImGroupMemberServiceImpl implements ImGroupMemberService {
 
         List<AddMemberResp> resp = new ArrayList<>();
 
-        boolean isAdmin = false;
+        boolean isAdmin = Boolean.TRUE.equals(RequestHolder.get());
         ResponseVO<ImGroupEntity> groupResp = imGroupService.getGroup(req.getGroupId(), req.getAppId());
         if (!groupResp.isOk()) {
             return groupResp;
@@ -231,7 +232,7 @@ public class ImGroupMemberServiceImpl implements ImGroupMemberService {
     @Override
     public ResponseVO removeMember(RemoveGroupMemberReq req) {
 
-        boolean isAdmin = false;
+        boolean isAdmin = Boolean.TRUE.equals(RequestHolder.get());
         ResponseVO<ImGroupEntity> groupResp = imGroupService.getGroup(req.getGroupId(), req.getAppId());
         if (!groupResp.isOk()) {
             return groupResp;
@@ -360,7 +361,7 @@ public class ImGroupMemberServiceImpl implements ImGroupMemberService {
     @Override
     public ResponseVO updateGroupMember(UpdateGroupMemberReq req) {
 
-        boolean isadmin = false;
+        boolean isAdmin = Boolean.TRUE.equals(RequestHolder.get());
 
         ResponseVO<ImGroupEntity> group = imGroupService.getGroup(req.getGroupId(), req.getAppId());
         if (!group.isOk()) {
@@ -375,7 +376,7 @@ public class ImGroupMemberServiceImpl implements ImGroupMemberService {
         //是否是自己修改自己的资料
         boolean isMeOperate = req.getOperater().equals(req.getMemberId());
 
-        if (!isadmin) {
+        if (!isAdmin) {
             //昵称只能自己修改 权限只能群主或管理员修改
             if (StringUtils.isBlank(req.getAlias()) && !isMeOperate) {
                 return ResponseVO.errorResponse(GroupErrorCode.THIS_OPERATE_NEED_ONESELF);
@@ -497,7 +498,7 @@ public class ImGroupMemberServiceImpl implements ImGroupMemberService {
         }
 
 
-        boolean isAdmin = false;
+        boolean isAdmin = Boolean.TRUE.equals(RequestHolder.get());
         boolean isManager = false;
         boolean isOwner = false;
         GetRoleInGroupResp memberRole = null;

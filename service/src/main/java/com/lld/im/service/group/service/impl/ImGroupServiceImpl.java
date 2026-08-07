@@ -31,6 +31,7 @@ import com.lld.im.service.group.service.ImGroupService;
 import com.lld.im.service.seq.RedisSeq;
 import com.lld.im.service.utils.CallbackService;
 import com.lld.im.service.utils.GroupMessageProducer;
+import com.lld.im.service.interceptor.RequestHolder;
 import io.reactivex.rxjava3.core.Observable;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.BeanUtils;
@@ -68,7 +69,7 @@ public class ImGroupServiceImpl implements ImGroupService {
     @Transactional
     public ResponseVO createGroup(CreateGroupReq req) {
 
-        boolean isAdmin = false;
+        boolean isAdmin = Boolean.TRUE.equals(RequestHolder.get());
 
         if (!isAdmin) {
             req.setOwnerId(req.getOperater());
@@ -136,7 +137,7 @@ public class ImGroupServiceImpl implements ImGroupService {
     @Transactional
     public ResponseVO destroyGroup(DestroyGroupReq req) {
 
-        boolean isAdmin = false;
+        boolean isAdmin = Boolean.TRUE.equals(RequestHolder.get());
 
         QueryWrapper<ImGroupEntity> objectQueryWrapper = new QueryWrapper<>();
         objectQueryWrapper.eq("group_id", req.getGroupId());
@@ -322,7 +323,7 @@ public class ImGroupServiceImpl implements ImGroupService {
             throw new ApplicationException(GroupErrorCode.GROUP_IS_DESTROY);
         }
 
-        boolean isAdmin = false;
+        boolean isAdmin = Boolean.TRUE.equals(RequestHolder.get());
 
         if (!isAdmin) {
             //不是后台调用需要检查权限
@@ -395,7 +396,7 @@ public class ImGroupServiceImpl implements ImGroupService {
             return group;
         }
 
-        boolean isAdmin = false;
+        boolean isAdmin = Boolean.TRUE.equals(RequestHolder.get());
 
         if(!isAdmin){
             //不是后台调用需要检查权限
