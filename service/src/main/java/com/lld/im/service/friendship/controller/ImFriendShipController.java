@@ -34,7 +34,7 @@ public class ImFriendShipController {
         return imFriendShipService.addFriend(req);
     }
 
-    @RequestMapping("/updateFriend ")
+    @RequestMapping("/updateFriend")
     public ResponseVO updateFriendShip(@RequestBody @Validated UpdateFriendReq req, Integer appId){
         if(appId == null){
             return ResponseVO.AppIdIsNull();

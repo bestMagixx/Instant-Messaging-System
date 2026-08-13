@@ -12,7 +12,10 @@ import com.lld.im.codec.proto.MessagePack;
 import com.lld.im.common.ResponseVO;
 import com.lld.im.common.constant.Constants;
 import com.lld.im.common.enums.ImConnectStatusEnum;
-import com.lld.im.common.enums.command.*;
+import com.lld.im.common.enums.command.GroupEventCommand;
+import com.lld.im.common.enums.command.MessageCommand;
+import com.lld.im.common.enums.command.SystemCommand;
+import com.lld.im.common.enums.command.UserEventCommand;
 import com.lld.im.common.model.UserClientDTO;
 import com.lld.im.common.model.UserSession;
 import com.lld.im.common.model.message.CheckSendMessageReq;
@@ -24,7 +27,6 @@ import feign.Feign;
 import feign.Request;
 import feign.jackson.JacksonDecoder;
 import feign.jackson.JacksonEncoder;
-import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.socket.nio.NioSocketChannel;
@@ -34,12 +36,10 @@ import org.redisson.api.RTopic;
 import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.InetAddress;
 
 
-@ChannelHandler.Sharable
 public class NettyServerHandler extends SimpleChannelInboundHandler<Message> {
 
     private final static Logger logger = LoggerFactory.getLogger(NettyServerHandler.class);

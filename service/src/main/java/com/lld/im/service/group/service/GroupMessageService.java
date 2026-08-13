@@ -114,14 +114,11 @@ public class GroupMessageService {
 
     private void dispatchMessage(GroupChatMessageContent messageContent){
         for (String memberId : messageContent.getMemberId()) {
-            if(memberId.equals(messageContent.getFromId())){
+            if(!memberId.equals(messageContent.getFromId())){
                 messageProducer.sendToUser(memberId,
                         GroupEventCommand.MSG_GROUP,messageContent,messageContent.getAppId());
             }
         }
-        messageProducer.sendToUser(messageContent.getToId(), MessageCommand.MSG_P2P,
-                messageContent,messageContent.getAppId());
-
     }
 
     private void ack(MessageContent messageContent,ResponseVO responseVO){
@@ -155,6 +152,7 @@ public class GroupMessageService {
         //2.发消息给同步在线端
         syncToSender(message, message);
         //3.发消息给群内在线成员
+        message.setMemberId(imGroupMemberService.getGroupMemberId(message.getGroupId(), req.getAppId()));
         dispatchMessage(message);
         return sendMessageResp;
     }

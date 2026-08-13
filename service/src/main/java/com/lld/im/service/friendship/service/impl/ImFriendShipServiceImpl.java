@@ -375,7 +375,7 @@ public class ImFriendShipServiceImpl implements ImFriendShipService {
                 update.setBlack(FriendShipStatusEnum.BLACK_STATUS_BLACKED.getCode());
                 update.setFriendSequence(seq);
                 int result = imFriendShipMapper.update(update,query);
-                if(result != -1){
+                if(result != 1){
                     return ResponseVO.errorResponse(FriendShipErrorCode.ADD_BLACK_ERROR);
                 }
                 writeUserSeq.writeUserSeq(req.getAppId(), req.getFromId(), Constants.SeqConstants.Friendship, seq);

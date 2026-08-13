@@ -385,7 +385,7 @@ public class ImGroupServiceImpl implements ImGroupService {
         queryWrapper.in("group_id",memberJoinedGroup.getData());
 
         list = imGroupMapper.selectList(queryWrapper);
-        return null;
+        return ResponseVO.successResponse(list);
     }
 
     @Override

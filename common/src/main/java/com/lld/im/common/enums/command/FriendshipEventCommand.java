@@ -51,6 +51,6 @@ public enum FriendshipEventCommand implements Command{
 
     @Override
     public int getCommand() {
-        return 0;
+        return command;
     }
 }

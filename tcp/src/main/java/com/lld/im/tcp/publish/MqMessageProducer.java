@@ -18,7 +18,7 @@ public class MqMessageProducer {
         String com = command.toString();
         String commandSub = com.substring(0, 1);
         CommandType commandType = CommandType.getCommandType(commandSub);
-        String channelName = "";
+        String channelName = Constants.RabbitConstants.Im2MessageService;
         if(commandType == CommandType.MESSAGE){
             channelName = Constants.RabbitConstants.Im2MessageService;
         }else if(commandType == CommandType.GROUP){
@@ -48,10 +48,18 @@ public class MqMessageProducer {
 
     public static void sendMessage(Object message, MessageHeader header, Integer command){
         Channel channel = null;
-        String channelName= Constants.RabbitConstants.Im2MessageService;
-
-        if(command.toString().startsWith("2")){
+        String com = command.toString();
+        String commandSub = com.substring(0, 1);
+        CommandType commandType = CommandType.getCommandType(commandSub);
+        String channelName = Constants.RabbitConstants.Im2MessageService;
+        if(commandType == CommandType.MESSAGE){
+            channelName = Constants.RabbitConstants.Im2MessageService;
+        }else if(commandType == CommandType.GROUP){
             channelName = Constants.RabbitConstants.Im2GroupService;
+        }else if(commandType == CommandType.FRIEND){
+            channelName = Constants.RabbitConstants.Im2FriendshipService;
+        }else if(commandType == CommandType.USER){
+            channelName = Constants.RabbitConstants.Im2UserService;
         }
 
         try{

@@ -17,10 +17,11 @@ import org.redisson.api.RMap;
 import org.redisson.api.RedissonClient;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class SessionSocketHolder {
 
-    private static  final Map<UserClientDTO, NioSocketChannel> CHANNELS = new HashMap<>();
+    private static  final Map<UserClientDTO, NioSocketChannel> CHANNELS = new ConcurrentHashMap<>();
 
     public static void put(Integer appId,String userId,Integer clientType, String imei, NioSocketChannel channel){
         UserClientDTO dto = new UserClientDTO();
@@ -63,8 +64,7 @@ public class SessionSocketHolder {
     }
 
     public static void remove(NioSocketChannel channel){
-        CHANNELS.entrySet().stream().filter(entity -> entity.getValue() == channel)
-                .forEach(entity -> CHANNELS.remove(entity.getKey()));
+        CHANNELS.entrySet().removeIf(entity -> entity.getValue() == channel);
     }
 
     public static void removeUserSession(NioSocketChannel nioSocketChannel){
