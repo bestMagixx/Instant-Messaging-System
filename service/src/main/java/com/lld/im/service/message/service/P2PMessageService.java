@@ -17,6 +17,9 @@ import com.lld.im.service.seq.RedisSeq;
 import com.lld.im.service.utils.CallbackService;
 import com.lld.im.service.utils.ConversationIdGenerate;
 import com.lld.im.service.utils.MessageProducer;
+import org.checkerframework.checker.units.qual.A;
+import org.redisson.api.RLock;
+import org.redisson.api.RedissonClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
@@ -29,6 +32,7 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.locks.ReentrantLock;
 
 @Service
 public class P2PMessageService {
@@ -46,6 +50,9 @@ public class P2PMessageService {
 
     @Autowired
     RedisSeq redisSeq;
+
+    @Autowired
+    RedissonClient redissonClient;
 
     @Autowired
     AppConfig appConfig;
@@ -82,72 +89,92 @@ public class P2PMessageService {
 //        if(responseVO.isOk()){
 
         //用messageId从缓存中获取消息
-        MessageContent messageFromMessageIdCache = messageStoreService.getMessageFromMessageIdCache(
-                messageContent.getAppId(), messageContent.getMessageId(), MessageContent.class);
-        if(messageFromMessageIdCache != null){
-            threadPoolExecutor.execute(() -> {
-                //1.回ack给自己
-                ack(messageContent,ResponseVO.successResponse());
-                //2.发消息给同步在线端
-                syncToSender(messageContent, messageFromMessageIdCache);
-                //3.发消息给对方在线端
-                List<ClientInfo> clientInfos = dispatchMessage(messageFromMessageIdCache);
-                if(clientInfos.isEmpty()){
-                    //发送接受确认给接收方，要带上是服务端发送的标识
-                    receiveAck(messageContent);
+        RLock lock = redissonClient.getLock(messageContent.getAppId()
+                + ":" + Constants.RedisConstants.cacheMessage + ":" + messageContent.getMessageId());
+        boolean isLock = false;
+        try {
+            isLock = lock.tryLock(3, TimeUnit.SECONDS);
+            if(isLock){
+                MessageContent messageFromMessageIdCache = messageStoreService.getMessageFromMessageIdCache(
+                        messageContent.getAppId(), messageContent.getMessageId(), MessageContent.class);
+                if(messageFromMessageIdCache != null){
+                    lock.unlock();
+                    isLock = false;
+                    threadPoolExecutor.execute(() -> {
+                        //1.回ack给自己
+                        ack(messageContent,ResponseVO.successResponse());
+                        //2.发消息给同步在线端
+                        syncToSender(messageContent, messageFromMessageIdCache);
+                        //3.发消息给对方在线端
+                        List<ClientInfo> clientInfos = dispatchMessage(messageFromMessageIdCache);
+                        if(clientInfos.isEmpty()){
+                            //发送接受确认给接收方，要带上是服务端发送的标识
+                            receiveAck(messageContent);
+                        }
+                    });
+                    return;
                 }
-            });
-            return;
-        }
+                //回调
+                ResponseVO responseVO = ResponseVO.successResponse();
+                if(appConfig.isSendMessageAfterCallback()){
+                    responseVO = callbackService.beforeCallback(messageContent.getAppId(), Constants.CallbackCommand.SendMessageBefore
+                            , JSONObject.toJSONString(messageContent));
+                }
 
-        //回调
-        ResponseVO responseVO = ResponseVO.successResponse();
-        if(appConfig.isSendMessageAfterCallback()){
-            responseVO = callbackService.beforeCallback(messageContent.getAppId(), Constants.CallbackCommand.SendMessageBefore
-                    , JSONObject.toJSONString(messageContent));
-        }
+                if(!responseVO.isOk()){
+                    ack(messageContent,responseVO);
+                    return;
+                }
 
-        if(!responseVO.isOk()){
-            ack(messageContent,responseVO);
-            return;
-        }
-
-        //appId + Seq + (from + to) groupId
-        long seq = redisSeq.doGetSeq(messageContent.getAppId() + ":"
-                + Constants.SeqConstants.Message + ":" + ConversationIdGenerate.generateP2PId(
-                messageContent.getFromId(), messageContent.getToId()
-        ));
-        messageContent.setMessageSequence(seq);
-
-            threadPoolExecutor.execute(() -> {
-                //插入数据
-                messageStoreService.storeP2PMessage(messageContent);
-
-                //插入离线消息
-                OfflineMessageContent offlineMessageContent = new OfflineMessageContent();
-                BeanUtils.copyProperties(messageContent,offlineMessageContent);
-                offlineMessageContent.setConversationType(ConversationTypeEnum.P2P.getCode());
-                messageStoreService.storeOfflineMessage(offlineMessageContent);
-
-                //1.回ack给自己
-                ack(messageContent,ResponseVO.successResponse());
-                //2.发消息给同步在线端
-                syncToSender(messageContent,messageContent);
-                //3.发消息给对方在线端
-                List<ClientInfo> clientInfos = dispatchMessage(messageContent);
+                //appId + Seq + (from + to) groupId
+                long seq = redisSeq.doGetSeq(messageContent.getAppId() + ":"
+                        + Constants.SeqConstants.Message + ":" + ConversationIdGenerate.generateP2PId(
+                        messageContent.getFromId(), messageContent.getToId()
+                ));
+                messageContent.setMessageSequence(seq);
                 //将messageId存到缓存中
                 messageStoreService.setMessageFromMessageIdCache(messageContent.getAppId(), messageContent.getMessageId(), messageContent);
-                if(clientInfos.isEmpty()){
-                    //发送接受确认给接收方，要带上是服务端发送的标识
-                    receiveAck(messageContent);
-                }
 
-                if(appConfig.isSendMessageAfterCallback()){
-                    callbackService.callback(messageContent.getAppId(),Constants.CallbackCommand.SendMessageAfter,
-                            JSONObject.toJSONString(messageContent));
-                }
+                lock.unlock();
+                isLock = false;
+                threadPoolExecutor.execute(() -> {
+                    //1.回ack给自己
+                    ack(messageContent,ResponseVO.successResponse());
+                    //2.发消息给同步在线端
+                    syncToSender(messageContent,messageContent);
+                    //3.发消息给对方在线端
+                    List<ClientInfo> clientInfos = dispatchMessage(messageContent);
+                    if(clientInfos.isEmpty()){
+                        //发送接受确认给接收方，要带上是服务端发送的标识
+                        receiveAck(messageContent);
+                    }
 
-            });
+                    //插入数据
+                    messageStoreService.storeP2PMessage(messageContent);
+
+                    //插入离线消息
+                    OfflineMessageContent offlineMessageContent = new OfflineMessageContent();
+                    BeanUtils.copyProperties(messageContent,offlineMessageContent);
+                    offlineMessageContent.setConversationType(ConversationTypeEnum.P2P.getCode());
+                    messageStoreService.storeOfflineMessage(offlineMessageContent);
+
+                    if(appConfig.isSendMessageAfterCallback()){
+                        callbackService.callback(messageContent.getAppId(),Constants.CallbackCommand.SendMessageAfter,
+                                JSONObject.toJSONString(messageContent));
+                    }
+
+                });
+            }else{
+
+            }
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException("获取锁中断", e);
+        } finally {
+            if (isLock && lock.isHeldByCurrentThread()) {
+                lock.unlock();
+            }
+        }
 
 //        }else {
 //            //告诉客户端失败了

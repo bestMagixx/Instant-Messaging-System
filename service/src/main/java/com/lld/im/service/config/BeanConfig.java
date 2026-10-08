@@ -7,6 +7,9 @@ import com.lld.im.common.route.RouteHandle;
 import com.lld.im.common.route.algorithm.consistenthash.AbstractConsistentHash;
 import com.lld.im.service.utils.SnowflakeIdWorker;
 import org.I0Itec.zkclient.ZkClient;
+import org.redisson.Redisson;
+import org.redisson.api.RedissonClient;
+import org.redisson.config.Config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -62,5 +65,14 @@ public class BeanConfig {
     @Bean
     public SnowflakeIdWorker buildSnowflakSeq() throws Exception{
         return new SnowflakeIdWorker(0);
+    }
+
+    @Bean
+    public RedissonClient redissonClient(){
+        Config config = new Config();
+        config.useSingleServer()
+                .setAddress("redis://127.0.0.1:6379")
+                .setPassword("xxx");
+        return Redisson.create(config);
     }
 }

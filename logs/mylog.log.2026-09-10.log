@@ -1,0 +1,632 @@
+2026-09-10 19:56:55 -HV000001: Hibernate Validator 6.2.5.Final
+2026-09-10 19:56:55 -Starting Application using Java 17.0.16 on LAPTOP-ARPJN8NB with PID 82100 (D:\Java_Study\Java_projects\im-system\service\target\classes started by Lenovo in D:\Java_Study\Java_projects\im-system)
+2026-09-10 19:56:55 -The following 1 profile is active: "dev"
+2026-09-10 19:56:57 -Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-10 19:56:57 -Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-10 19:56:57 -Finished Spring Data repository scanning in 47 ms. Found 0 Redis repository interfaces.
+2026-09-10 19:56:57 -Tomcat initialized with port(s): 8000 (http)
+2026-09-10 19:56:57 -Initializing ProtocolHandler ["http-nio-8000"]
+2026-09-10 19:56:57 -Starting service [Tomcat]
+2026-09-10 19:56:57 -Starting Servlet engine: [Apache Tomcat/9.0.83]
+2026-09-10 19:56:58 -Initializing Spring embedded WebApplicationContext
+2026-09-10 19:56:58 -Root WebApplicationContext: initialization completed in 3096 ms
+2026-09-10 19:56:59 -Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'imUserController': Unsatisfied dependency expressed through field 'zKit'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ZKit': Unsatisfied dependency expressed through field 'zkClient'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'buildZKClient' defined in class path resource [com/lld/im/service/config/BeanConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.I0Itec.zkclient.ZkClient]: Factory method 'buildZKClient' threw exception; nested exception is org.I0Itec.zkclient.exception.ZkException: Unable to connect to ${zookeeper.address}:2181
+2026-09-10 19:56:59 -Stopping service [Tomcat]
+2026-09-10 19:56:59 -
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2026-09-10 19:56:59 -Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'imUserController': Unsatisfied dependency expressed through field 'zKit'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ZKit': Unsatisfied dependency expressed through field 'zkClient'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'buildZKClient' defined in class path resource [com/lld/im/service/config/BeanConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.I0Itec.zkclient.ZkClient]: Factory method 'buildZKClient' threw exception; nested exception is org.I0Itec.zkclient.exception.ZkException: Unable to connect to ${zookeeper.address}:2181
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:713)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:693)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:408)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:929)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:591)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:732)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:409)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1300)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1289)
+	at com.lld.im.service.Application.main(Application.java:13)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ZKit': Unsatisfied dependency expressed through field 'zkClient'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'buildZKClient' defined in class path resource [com/lld/im/service/config/BeanConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.I0Itec.zkclient.ZkClient]: Factory method 'buildZKClient' threw exception; nested exception is org.I0Itec.zkclient.exception.ZkException: Unable to connect to ${zookeeper.address}:2181
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:713)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:693)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:408)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:710)
+	... 20 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'buildZKClient' defined in class path resource [com/lld/im/service/config/BeanConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.I0Itec.zkclient.ZkClient]: Factory method 'buildZKClient' threw exception; nested exception is org.I0Itec.zkclient.exception.ZkException: Unable to connect to ${zookeeper.address}:2181
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:481)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:710)
+	... 34 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.I0Itec.zkclient.ZkClient]: Factory method 'buildZKClient' threw exception; nested exception is org.I0Itec.zkclient.exception.ZkException: Unable to connect to ${zookeeper.address}:2181
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:648)
+	... 47 common frames omitted
+Caused by: org.I0Itec.zkclient.exception.ZkException: Unable to connect to ${zookeeper.address}:2181
+	at org.I0Itec.zkclient.ZkConnection.connect(ZkConnection.java:66)
+	at org.I0Itec.zkclient.ZkClient.connect(ZkClient.java:872)
+	at org.I0Itec.zkclient.ZkClient.<init>(ZkClient.java:98)
+	at org.I0Itec.zkclient.ZkClient.<init>(ZkClient.java:92)
+	at org.I0Itec.zkclient.ZkClient.<init>(ZkClient.java:76)
+	at com.lld.im.service.config.BeanConfig.buildZKClient(BeanConfig.java:25)
+	at com.lld.im.service.config.BeanConfig$$EnhancerBySpringCGLIB$$7341a9a0.CGLIB$buildZKClient$2(<generated>)
+	at com.lld.im.service.config.BeanConfig$$EnhancerBySpringCGLIB$$7341a9a0$$FastClassBySpringCGLIB$$8a0ea287.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:331)
+	at com.lld.im.service.config.BeanConfig$$EnhancerBySpringCGLIB$$7341a9a0.buildZKClient(<generated>)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	... 48 common frames omitted
+Caused by: java.net.UnknownHostException: 不知道这样的主机。 (${zookeeper.address})
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.InetAddress$PlatformNameService.lookupAllHostAddr(InetAddress.java:934)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1543)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:852)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1533)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1385)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1306)
+	at org.apache.zookeeper.ClientCnxn.<init>(ClientCnxn.java:386)
+	at org.apache.zookeeper.ClientCnxn.<init>(ClientCnxn.java:331)
+	at org.apache.zookeeper.ZooKeeper.<init>(ZooKeeper.java:377)
+	at org.I0Itec.zkclient.ZkConnection.connect(ZkConnection.java:64)
+	... 63 common frames omitted
+2026-09-10 19:58:17 -HV000001: Hibernate Validator 6.2.5.Final
+2026-09-10 19:58:17 -Starting Application using Java 17.0.16 on LAPTOP-ARPJN8NB with PID 77120 (D:\Java_Study\Java_projects\im-system\service\target\classes started by Lenovo in D:\Java_Study\Java_projects\im-system)
+2026-09-10 19:58:17 -The following 1 profile is active: "dev"
+2026-09-10 19:58:17 -Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-10 19:58:17 -Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-10 19:58:18 -Finished Spring Data repository scanning in 42 ms. Found 0 Redis repository interfaces.
+2026-09-10 19:58:18 -Tomcat initialized with port(s): 8000 (http)
+2026-09-10 19:58:18 -Initializing ProtocolHandler ["http-nio-8000"]
+2026-09-10 19:58:18 -Starting service [Tomcat]
+2026-09-10 19:58:18 -Starting Servlet engine: [Apache Tomcat/9.0.83]
+2026-09-10 19:58:18 -Initializing Spring embedded WebApplicationContext
+2026-09-10 19:58:18 -Root WebApplicationContext: initialization completed in 1423 ms
+2026-09-10 19:58:19 -Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'imUserController': Unsatisfied dependency expressed through field 'zKit'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ZKit': Unsatisfied dependency expressed through field 'zkClient'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'buildZKClient' defined in class path resource [com/lld/im/service/config/BeanConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.I0Itec.zkclient.ZkClient]: Factory method 'buildZKClient' threw exception; nested exception is org.I0Itec.zkclient.exception.ZkException: Unable to connect to ${zookeeper.address}:2181
+2026-09-10 19:58:20 -Stopping service [Tomcat]
+2026-09-10 19:58:20 -
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2026-09-10 19:58:20 -Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'imUserController': Unsatisfied dependency expressed through field 'zKit'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ZKit': Unsatisfied dependency expressed through field 'zkClient'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'buildZKClient' defined in class path resource [com/lld/im/service/config/BeanConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.I0Itec.zkclient.ZkClient]: Factory method 'buildZKClient' threw exception; nested exception is org.I0Itec.zkclient.exception.ZkException: Unable to connect to ${zookeeper.address}:2181
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:713)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:693)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:408)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:929)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:591)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:732)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:409)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1300)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1289)
+	at com.lld.im.service.Application.main(Application.java:13)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ZKit': Unsatisfied dependency expressed through field 'zkClient'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'buildZKClient' defined in class path resource [com/lld/im/service/config/BeanConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.I0Itec.zkclient.ZkClient]: Factory method 'buildZKClient' threw exception; nested exception is org.I0Itec.zkclient.exception.ZkException: Unable to connect to ${zookeeper.address}:2181
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:713)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:693)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:408)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:710)
+	... 20 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'buildZKClient' defined in class path resource [com/lld/im/service/config/BeanConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.I0Itec.zkclient.ZkClient]: Factory method 'buildZKClient' threw exception; nested exception is org.I0Itec.zkclient.exception.ZkException: Unable to connect to ${zookeeper.address}:2181
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:481)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:710)
+	... 34 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.I0Itec.zkclient.ZkClient]: Factory method 'buildZKClient' threw exception; nested exception is org.I0Itec.zkclient.exception.ZkException: Unable to connect to ${zookeeper.address}:2181
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:648)
+	... 47 common frames omitted
+Caused by: org.I0Itec.zkclient.exception.ZkException: Unable to connect to ${zookeeper.address}:2181
+	at org.I0Itec.zkclient.ZkConnection.connect(ZkConnection.java:66)
+	at org.I0Itec.zkclient.ZkClient.connect(ZkClient.java:872)
+	at org.I0Itec.zkclient.ZkClient.<init>(ZkClient.java:98)
+	at org.I0Itec.zkclient.ZkClient.<init>(ZkClient.java:92)
+	at org.I0Itec.zkclient.ZkClient.<init>(ZkClient.java:76)
+	at com.lld.im.service.config.BeanConfig.buildZKClient(BeanConfig.java:25)
+	at com.lld.im.service.config.BeanConfig$$EnhancerBySpringCGLIB$$117037a.CGLIB$buildZKClient$0(<generated>)
+	at com.lld.im.service.config.BeanConfig$$EnhancerBySpringCGLIB$$117037a$$FastClassBySpringCGLIB$$d452473d.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:331)
+	at com.lld.im.service.config.BeanConfig$$EnhancerBySpringCGLIB$$117037a.buildZKClient(<generated>)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	... 48 common frames omitted
+Caused by: java.net.UnknownHostException: 不知道这样的主机。 (${zookeeper.address})
+	at java.base/java.net.Inet6AddressImpl.lookupAllHostAddr(Native Method)
+	at java.base/java.net.InetAddress$PlatformNameService.lookupAllHostAddr(InetAddress.java:934)
+	at java.base/java.net.InetAddress.getAddressesFromNameService(InetAddress.java:1543)
+	at java.base/java.net.InetAddress$NameServiceAddresses.get(InetAddress.java:852)
+	at java.base/java.net.InetAddress.getAllByName0(InetAddress.java:1533)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1385)
+	at java.base/java.net.InetAddress.getAllByName(InetAddress.java:1306)
+	at org.apache.zookeeper.ClientCnxn.<init>(ClientCnxn.java:386)
+	at org.apache.zookeeper.ClientCnxn.<init>(ClientCnxn.java:331)
+	at org.apache.zookeeper.ZooKeeper.<init>(ZooKeeper.java:377)
+	at org.I0Itec.zkclient.ZkConnection.connect(ZkConnection.java:64)
+	... 63 common frames omitted
+2026-09-10 20:03:31 -HV000001: Hibernate Validator 6.2.5.Final
+2026-09-10 20:03:31 -Starting Application using Java 17.0.16 on LAPTOP-ARPJN8NB with PID 80648 (D:\Java_Study\Java_projects\im-system\service\target\classes started by Lenovo in D:\Java_Study\Java_projects\im-system)
+2026-09-10 20:03:31 -The following 1 profile is active: "dev"
+2026-09-10 20:03:31 -Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-10 20:03:31 -Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-10 20:03:31 -Finished Spring Data repository scanning in 45 ms. Found 0 Redis repository interfaces.
+2026-09-10 20:03:32 -Tomcat initialized with port(s): 8000 (http)
+2026-09-10 20:03:32 -Initializing ProtocolHandler ["http-nio-8000"]
+2026-09-10 20:03:32 -Starting service [Tomcat]
+2026-09-10 20:03:32 -Starting Servlet engine: [Apache Tomcat/9.0.83]
+2026-09-10 20:03:32 -Initializing Spring embedded WebApplicationContext
+2026-09-10 20:03:32 -Root WebApplicationContext: initialization completed in 1421 ms
+2026-09-10 20:04:02 -HV000001: Hibernate Validator 6.2.5.Final
+2026-09-10 20:04:02 -Starting Application using Java 17.0.16 on LAPTOP-ARPJN8NB with PID 66100 (D:\Java_Study\Java_projects\im-system\service\target\classes started by Lenovo in D:\Java_Study\Java_projects\im-system)
+2026-09-10 20:04:02 -The following 1 profile is active: "dev"
+2026-09-10 20:04:02 -Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-10 20:04:02 -Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-10 20:04:02 -Finished Spring Data repository scanning in 41 ms. Found 0 Redis repository interfaces.
+2026-09-10 20:04:03 -Tomcat initialized with port(s): 8000 (http)
+2026-09-10 20:04:03 -Initializing ProtocolHandler ["http-nio-8000"]
+2026-09-10 20:04:03 -Starting service [Tomcat]
+2026-09-10 20:04:03 -Starting Servlet engine: [Apache Tomcat/9.0.83]
+2026-09-10 20:04:03 -Initializing Spring embedded WebApplicationContext
+2026-09-10 20:04:03 -Root WebApplicationContext: initialization completed in 1443 ms
+2026-09-10 20:04:04 -Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'imUserController': Unsatisfied dependency expressed through field 'zKit'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ZKit': Unsatisfied dependency expressed through field 'zkClient'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'buildZKClient' defined in class path resource [com/lld/im/service/config/BeanConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.I0Itec.zkclient.ZkClient]: Factory method 'buildZKClient' threw exception; nested exception is org.I0Itec.zkclient.exception.ZkTimeoutException: Unable to connect to zookeeper server within timeout: 10000
+2026-09-10 20:04:16 -Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'imUserController': Unsatisfied dependency expressed through field 'zKit'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ZKit': Unsatisfied dependency expressed through field 'zkClient'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'buildZKClient' defined in class path resource [com/lld/im/service/config/BeanConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.I0Itec.zkclient.ZkClient]: Factory method 'buildZKClient' threw exception; nested exception is org.I0Itec.zkclient.exception.ZkTimeoutException: Unable to connect to zookeeper server within timeout: 10000
+2026-09-10 20:04:16 -Stopping service [Tomcat]
+2026-09-10 20:04:16 -
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2026-09-10 20:04:16 -Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'imUserController': Unsatisfied dependency expressed through field 'zKit'; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ZKit': Unsatisfied dependency expressed through field 'zkClient'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'buildZKClient' defined in class path resource [com/lld/im/service/config/BeanConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.I0Itec.zkclient.ZkClient]: Factory method 'buildZKClient' threw exception; nested exception is org.I0Itec.zkclient.exception.ZkTimeoutException: Unable to connect to zookeeper server within timeout: 10000
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:713)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:693)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:408)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:955)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:929)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:591)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:147)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:732)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:409)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:308)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1300)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1289)
+	at com.lld.im.service.Application.main(Application.java:13)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'ZKit': Unsatisfied dependency expressed through field 'zkClient'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'buildZKClient' defined in class path resource [com/lld/im/service/config/BeanConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.I0Itec.zkclient.ZkClient]: Factory method 'buildZKClient' threw exception; nested exception is org.I0Itec.zkclient.exception.ZkTimeoutException: Unable to connect to zookeeper server within timeout: 10000
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:713)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:693)
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:119)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessProperties(AutowiredAnnotationBeanPostProcessor.java:408)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1431)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:619)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:710)
+	... 20 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'buildZKClient' defined in class path resource [com/lld/im/service/config/BeanConfig.class]: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.I0Itec.zkclient.ZkClient]: Factory method 'buildZKClient' threw exception; nested exception is org.I0Itec.zkclient.exception.ZkTimeoutException: Unable to connect to zookeeper server within timeout: 10000
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:481)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1391)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1311)
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.resolveFieldValue(AutowiredAnnotationBeanPostProcessor.java:710)
+	... 34 common frames omitted
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [org.I0Itec.zkclient.ZkClient]: Factory method 'buildZKClient' threw exception; nested exception is org.I0Itec.zkclient.exception.ZkTimeoutException: Unable to connect to zookeeper server within timeout: 10000
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:648)
+	... 47 common frames omitted
+Caused by: org.I0Itec.zkclient.exception.ZkTimeoutException: Unable to connect to zookeeper server within timeout: 10000
+	at org.I0Itec.zkclient.ZkClient.connect(ZkClient.java:876)
+	at org.I0Itec.zkclient.ZkClient.<init>(ZkClient.java:98)
+	at org.I0Itec.zkclient.ZkClient.<init>(ZkClient.java:92)
+	at org.I0Itec.zkclient.ZkClient.<init>(ZkClient.java:76)
+	at com.lld.im.service.config.BeanConfig.buildZKClient(BeanConfig.java:25)
+	at com.lld.im.service.config.BeanConfig$$EnhancerBySpringCGLIB$$e442aaa7.CGLIB$buildZKClient$0(<generated>)
+	at com.lld.im.service.config.BeanConfig$$EnhancerBySpringCGLIB$$e442aaa7$$FastClassBySpringCGLIB$$69799b8a.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:331)
+	at com.lld.im.service.config.BeanConfig$$EnhancerBySpringCGLIB$$e442aaa7.buildZKClient(<generated>)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	... 48 common frames omitted
+2026-09-10 20:08:14 -HV000001: Hibernate Validator 6.2.5.Final
+2026-09-10 20:08:14 -Starting Application using Java 17.0.16 on LAPTOP-ARPJN8NB with PID 68796 (D:\Java_Study\Java_projects\im-system\service\target\classes started by Lenovo in D:\Java_Study\Java_projects\im-system)
+2026-09-10 20:08:14 -The following 1 profile is active: "dev"
+2026-09-10 20:08:14 -Multiple Spring Data modules found, entering strict repository configuration mode
+2026-09-10 20:08:14 -Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-10 20:08:14 -Finished Spring Data repository scanning in 43 ms. Found 0 Redis repository interfaces.
+2026-09-10 20:08:15 -Tomcat initialized with port(s): 8000 (http)
+2026-09-10 20:08:15 -Initializing ProtocolHandler ["http-nio-8000"]
+2026-09-10 20:08:15 -Starting service [Tomcat]
+2026-09-10 20:08:15 -Starting Servlet engine: [Apache Tomcat/9.0.83]
+2026-09-10 20:08:15 -Initializing Spring embedded WebApplicationContext
+2026-09-10 20:08:15 -Root WebApplicationContext: initialization completed in 1512 ms
+2026-09-10 20:08:22 -Starting ProtocolHandler ["http-nio-8000"]
+2026-09-10 20:08:22 -Tomcat started on port(s): 8000 (http) with context path ''
+2026-09-10 20:08:22 -Attempting to connect to: [localhost:5672]
+2026-09-10 20:08:22 -Created new connection: rabbitConnectionFactory#39f4a7c4:0/SimpleConnection@6148827c [delegate=amqp://guest@127.0.0.1:5672/, localPort= 59199]
+2026-09-10 20:08:22 -Started Application in 8.639 seconds (JVM running for 9.415)
+2026-09-10 20:10:17 -Starting Application on LAPTOP-ARPJN8NB with PID 82408 (D:\Java_Study\Java_projects\im-system\im-message-store\target\classes started by Lenovo in D:\Java_Study\Java_projects\im-system)
+2026-09-10 20:10:17 -The following profiles are active: dev
+2026-09-10 20:10:18 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2026-09-10 20:10:18 -Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-10 20:10:18 -Finished Spring Data repository scanning in 20ms. Found 0 Redis repository interfaces.
+2026-09-10 20:10:19 -Tomcat initialized with port(s): 8080 (http)
+2026-09-10 20:10:19 -Initializing ProtocolHandler ["http-nio-8080"]
+2026-09-10 20:10:19 -Starting service [Tomcat]
+2026-09-10 20:10:19 -Starting Servlet engine: [Apache Tomcat/9.0.37]
+2026-09-10 20:10:19 -Initializing Spring embedded WebApplicationContext
+2026-09-10 20:10:19 -Root WebApplicationContext: initialization completed in 1414 ms
+2026-09-10 20:10:19 -Initializing ExecutorService 'applicationTaskExecutor'
+2026-09-10 20:10:20 -Starting ProtocolHandler ["http-nio-8080"]
+2026-09-10 20:10:20 -Tomcat started on port(s): 8080 (http) with context path ''
+2026-09-10 20:10:20 -Attempting to connect to: [localhost:5672]
+2026-09-10 20:10:20 -Created new connection: rabbitConnectionFactory#29b8df5:0/SimpleConnection@2838eb [delegate=amqp://guest@127.0.0.1:5672/, localPort= 54633]
+2026-09-10 20:10:20 -Started Application in 3.171 seconds (JVM running for 3.931)
+2026-09-10 20:11:57 -CHAT MSG FROM QUEUE :::::{"clientType":1,"appId":10000,"imei":"web-0001","userId":"lld","command":4001,"status":1}
+2026-09-10 20:11:58 -处理消息出现异常：Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 192.168.74.128/<unresolved>:6379
+2026-09-10 20:11:58 -RMQ_CHAT_TRAN_ERROR
+org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 192.168.74.128/<unresolved>:6379
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.translateException(LettuceConnectionFactory.java:1689)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1597)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1383)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1366)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedConnection(LettuceConnectionFactory.java:1093)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getConnection(LettuceConnectionFactory.java:421)
+	at org.springframework.data.redis.core.RedisConnectionUtils.fetchConnection(RedisConnectionUtils.java:193)
+	at org.springframework.data.redis.core.RedisConnectionUtils.doGetConnection(RedisConnectionUtils.java:144)
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:105)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:211)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:191)
+	at org.springframework.data.redis.core.AbstractOperations.execute(AbstractOperations.java:97)
+	at org.springframework.data.redis.core.DefaultHashOperations.entries(DefaultHashOperations.java:307)
+	at com.lld.im.service.utils.UserSessionUtils.getUserSession(UserSessionUtils.java:28)
+	at com.lld.im.service.user.service.impl.ImUserStatusServiceImpl.processUserOnlineStatusNotify(ImUserStatusServiceImpl.java:56)
+	at com.lld.im.service.user.mq.UserOnlineStatusReceiver.onChatMessage(UserOnlineStatusReceiver.java:64)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:169)
+	at org.springframework.amqp.rabbit.listener.adapter.KotlinAwareInvocableHandlerMethod.doInvoke(KotlinAwareInvocableHandlerMethod.java:45)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:119)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:77)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:263)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandlerAndProcessResult(MessagingMessageListenerAdapter.java:209)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:148)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1722)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1641)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1629)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1620)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1564)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:994)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:941)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:86)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1323)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1225)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to 192.168.74.128/<unresolved>:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:78)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:56)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:330)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:216)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:115)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:115)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1595)
+	... 36 common frames omitted
+Caused by: io.lettuce.core.RedisCommandExecutionException: NOAUTH HELLO must be called with the client already authenticated, otherwise the HELLO AUTH <user> <pass> option can be used to authenticate the client and select the RESP protocol version at the same time
+	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:147)
+	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:116)
+	at io.lettuce.core.protocol.AsyncCommand.completeResult(AsyncCommand.java:120)
+	at io.lettuce.core.protocol.AsyncCommand.complete(AsyncCommand.java:111)
+	at io.lettuce.core.protocol.CommandHandler.complete(CommandHandler.java:747)
+	at io.lettuce.core.protocol.CommandHandler.decode(CommandHandler.java:682)
+	at io.lettuce.core.protocol.CommandHandler.channelRead(CommandHandler.java:599)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	... 1 common frames omitted
+2026-09-10 20:11:58 -NACK_MSG:{"clientType":1,"appId":10000,"imei":"web-0001","userId":"lld","command":4001,"status":1}
+2026-09-10 20:12:01 -Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-09-10 20:12:01 -Initializing Servlet 'dispatcherServlet'
+2026-09-10 20:12:01 -Completed initialization in 1 ms
+2026-09-10 20:12:01 -HikariPool-1 - Starting...
+2026-09-10 20:12:01 -HikariPool-1 - Start completed.
+2026-09-10 20:13:26 -Waiting for workers to finish.
+2026-09-10 20:13:27 -Successfully waited for workers to finish.
+2026-09-10 20:13:27 -Waiting for workers to finish.
+2026-09-10 20:13:28 -Successfully waited for workers to finish.
+2026-09-10 20:13:28 -Shutdown ignored - container is not active already
+2026-09-10 20:13:28 -Shutdown ignored - container is not active already
+2026-09-10 20:13:33 -Shutting down ExecutorService 'applicationTaskExecutor'
+2026-09-10 20:13:38 -Starting Application on LAPTOP-ARPJN8NB with PID 72016 (D:\Java_Study\Java_projects\im-system\im-message-store\target\classes started by Lenovo in D:\Java_Study\Java_projects\im-system)
+2026-09-10 20:13:38 -The following profiles are active: dev
+2026-09-10 20:13:38 -Multiple Spring Data modules found, entering strict repository configuration mode!
+2026-09-10 20:13:38 -Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2026-09-10 20:13:38 -Finished Spring Data repository scanning in 18ms. Found 0 Redis repository interfaces.
+2026-09-10 20:13:39 -Tomcat initialized with port(s): 8080 (http)
+2026-09-10 20:13:39 -Initializing ProtocolHandler ["http-nio-8080"]
+2026-09-10 20:13:39 -Starting service [Tomcat]
+2026-09-10 20:13:39 -Starting Servlet engine: [Apache Tomcat/9.0.37]
+2026-09-10 20:13:39 -Initializing Spring embedded WebApplicationContext
+2026-09-10 20:13:39 -Root WebApplicationContext: initialization completed in 1197 ms
+2026-09-10 20:13:40 -Initializing ExecutorService 'applicationTaskExecutor'
+2026-09-10 20:13:40 -Starting ProtocolHandler ["http-nio-8080"]
+2026-09-10 20:13:40 -Tomcat started on port(s): 8080 (http) with context path ''
+2026-09-10 20:13:40 -Attempting to connect to: [localhost:5672]
+2026-09-10 20:13:40 -Created new connection: rabbitConnectionFactory#28b5662d:0/SimpleConnection@50fd739d [delegate=amqp://guest@127.0.0.1:5672/, localPort= 56470]
+2026-09-10 20:13:40 -Started Application in 3.005 seconds (JVM running for 4.037)
+2026-09-10 20:14:17 -CHAT MSG FROM QUEUE :::::{"clientType":1,"appId":10000,"imei":"web-0001","userId":"lld","command":4001,"status":1}
+2026-09-10 20:14:17 -处理消息出现异常：Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 192.168.74.128/<unresolved>:6379
+2026-09-10 20:14:17 -RMQ_CHAT_TRAN_ERROR
+org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 192.168.74.128/<unresolved>:6379
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.translateException(LettuceConnectionFactory.java:1689)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1597)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1383)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1366)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedConnection(LettuceConnectionFactory.java:1093)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getConnection(LettuceConnectionFactory.java:421)
+	at org.springframework.data.redis.core.RedisConnectionUtils.fetchConnection(RedisConnectionUtils.java:193)
+	at org.springframework.data.redis.core.RedisConnectionUtils.doGetConnection(RedisConnectionUtils.java:144)
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:105)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:211)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:191)
+	at org.springframework.data.redis.core.AbstractOperations.execute(AbstractOperations.java:97)
+	at org.springframework.data.redis.core.DefaultHashOperations.entries(DefaultHashOperations.java:307)
+	at com.lld.im.service.utils.UserSessionUtils.getUserSession(UserSessionUtils.java:28)
+	at com.lld.im.service.user.service.impl.ImUserStatusServiceImpl.processUserOnlineStatusNotify(ImUserStatusServiceImpl.java:56)
+	at com.lld.im.service.user.mq.UserOnlineStatusReceiver.onChatMessage(UserOnlineStatusReceiver.java:64)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:169)
+	at org.springframework.amqp.rabbit.listener.adapter.KotlinAwareInvocableHandlerMethod.doInvoke(KotlinAwareInvocableHandlerMethod.java:45)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:119)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:77)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:263)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandlerAndProcessResult(MessagingMessageListenerAdapter.java:209)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:148)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1722)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1641)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1629)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1620)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1564)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:994)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:941)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:86)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1323)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1225)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to 192.168.74.128/<unresolved>:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:78)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:56)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:330)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:216)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:115)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:115)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1595)
+	... 36 common frames omitted
+Caused by: io.lettuce.core.RedisCommandExecutionException: NOAUTH HELLO must be called with the client already authenticated, otherwise the HELLO AUTH <user> <pass> option can be used to authenticate the client and select the RESP protocol version at the same time
+	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:147)
+	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:116)
+	at io.lettuce.core.protocol.AsyncCommand.completeResult(AsyncCommand.java:120)
+	at io.lettuce.core.protocol.AsyncCommand.complete(AsyncCommand.java:111)
+	at io.lettuce.core.protocol.CommandHandler.complete(CommandHandler.java:747)
+	at io.lettuce.core.protocol.CommandHandler.decode(CommandHandler.java:682)
+	at io.lettuce.core.protocol.CommandHandler.channelRead(CommandHandler.java:599)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	... 1 common frames omitted
+2026-09-10 20:14:17 -NACK_MSG:{"clientType":1,"appId":10000,"imei":"web-0001","userId":"lld","command":4001,"status":1}
+2026-09-10 20:14:20 -CHAT MSG FROM QUEUE :::::{"clientType":1,"appId":10000,"imei":"web-0001","userId":"lld","command":4001,"status":1}
+2026-09-10 20:14:20 -处理消息出现异常：Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 192.168.74.128/<unresolved>:6379
+2026-09-10 20:14:20 -RMQ_CHAT_TRAN_ERROR
+org.springframework.data.redis.RedisConnectionFailureException: Unable to connect to Redis; nested exception is io.lettuce.core.RedisConnectionException: Unable to connect to 192.168.74.128/<unresolved>:6379
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.translateException(LettuceConnectionFactory.java:1689)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1597)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getNativeConnection(LettuceConnectionFactory.java:1383)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$SharedConnection.getConnection(LettuceConnectionFactory.java:1366)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getSharedConnection(LettuceConnectionFactory.java:1093)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory.getConnection(LettuceConnectionFactory.java:421)
+	at org.springframework.data.redis.core.RedisConnectionUtils.fetchConnection(RedisConnectionUtils.java:193)
+	at org.springframework.data.redis.core.RedisConnectionUtils.doGetConnection(RedisConnectionUtils.java:144)
+	at org.springframework.data.redis.core.RedisConnectionUtils.getConnection(RedisConnectionUtils.java:105)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:211)
+	at org.springframework.data.redis.core.RedisTemplate.execute(RedisTemplate.java:191)
+	at org.springframework.data.redis.core.AbstractOperations.execute(AbstractOperations.java:97)
+	at org.springframework.data.redis.core.DefaultHashOperations.entries(DefaultHashOperations.java:307)
+	at com.lld.im.service.utils.UserSessionUtils.getUserSession(UserSessionUtils.java:28)
+	at com.lld.im.service.user.service.impl.ImUserStatusServiceImpl.processUserOnlineStatusNotify(ImUserStatusServiceImpl.java:56)
+	at com.lld.im.service.user.mq.UserOnlineStatusReceiver.onChatMessage(UserOnlineStatusReceiver.java:64)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:169)
+	at org.springframework.amqp.rabbit.listener.adapter.KotlinAwareInvocableHandlerMethod.doInvoke(KotlinAwareInvocableHandlerMethod.java:45)
+	at org.springframework.messaging.handler.invocation.InvocableHandlerMethod.invoke(InvocableHandlerMethod.java:119)
+	at org.springframework.amqp.rabbit.listener.adapter.HandlerAdapter.invoke(HandlerAdapter.java:77)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandler(MessagingMessageListenerAdapter.java:263)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.invokeHandlerAndProcessResult(MessagingMessageListenerAdapter.java:209)
+	at org.springframework.amqp.rabbit.listener.adapter.MessagingMessageListenerAdapter.onMessage(MessagingMessageListenerAdapter.java:148)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doInvokeListener(AbstractMessageListenerContainer.java:1722)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.actualInvokeListener(AbstractMessageListenerContainer.java:1641)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.invokeListener(AbstractMessageListenerContainer.java:1629)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.doExecuteListener(AbstractMessageListenerContainer.java:1620)
+	at org.springframework.amqp.rabbit.listener.AbstractMessageListenerContainer.executeListener(AbstractMessageListenerContainer.java:1564)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.doReceiveAndExecute(SimpleMessageListenerContainer.java:994)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.receiveAndExecute(SimpleMessageListenerContainer.java:941)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer.access$1600(SimpleMessageListenerContainer.java:86)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.mainLoop(SimpleMessageListenerContainer.java:1323)
+	at org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer$AsyncMessageProcessingConsumer.run(SimpleMessageListenerContainer.java:1225)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Caused by: io.lettuce.core.RedisConnectionException: Unable to connect to 192.168.74.128/<unresolved>:6379
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:78)
+	at io.lettuce.core.RedisConnectionException.create(RedisConnectionException.java:56)
+	at io.lettuce.core.AbstractRedisClient.getConnection(AbstractRedisClient.java:330)
+	at io.lettuce.core.RedisClient.connect(RedisClient.java:216)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.lambda$getConnection$1(StandaloneConnectionProvider.java:115)
+	at java.base/java.util.Optional.orElseGet(Optional.java:364)
+	at org.springframework.data.redis.connection.lettuce.StandaloneConnectionProvider.getConnection(StandaloneConnectionProvider.java:115)
+	at org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory$ExceptionTranslatingConnectionProvider.getConnection(LettuceConnectionFactory.java:1595)
+	... 36 common frames omitted
+Caused by: io.lettuce.core.RedisCommandExecutionException: NOAUTH HELLO must be called with the client already authenticated, otherwise the HELLO AUTH <user> <pass> option can be used to authenticate the client and select the RESP protocol version at the same time
+	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:147)
+	at io.lettuce.core.internal.ExceptionFactory.createExecutionException(ExceptionFactory.java:116)
+	at io.lettuce.core.protocol.AsyncCommand.completeResult(AsyncCommand.java:120)
+	at io.lettuce.core.protocol.AsyncCommand.complete(AsyncCommand.java:111)
+	at io.lettuce.core.protocol.CommandHandler.complete(CommandHandler.java:747)
+	at io.lettuce.core.protocol.CommandHandler.decode(CommandHandler.java:682)
+	at io.lettuce.core.protocol.CommandHandler.channelRead(CommandHandler.java:599)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:442)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.AbstractChannelHandlerContext.fireChannelRead(AbstractChannelHandlerContext.java:412)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.channelRead(DefaultChannelPipeline.java:1410)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:440)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeChannelRead(AbstractChannelHandlerContext.java:420)
+	at io.netty.channel.DefaultChannelPipeline.fireChannelRead(DefaultChannelPipeline.java:919)
+	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:166)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:788)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:724)
+	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:650)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:562)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:997)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	... 1 common frames omitted
+2026-09-10 20:14:20 -NACK_MSG:{"clientType":1,"appId":10000,"imei":"web-0001","userId":"lld","command":4001,"status":1}
+2026-09-10 22:55:56 -Waiting for workers to finish.
+2026-09-10 22:55:56 -Waiting for workers to finish.
+2026-09-10 22:55:56 -Waiting for workers to finish.
+2026-09-10 22:55:56 -Successfully waited for workers to finish.
+2026-09-10 22:55:56 -Successfully waited for workers to finish.
+2026-09-10 22:55:57 -Successfully waited for workers to finish.
+2026-09-10 22:56:02 -HikariPool-1 - Shutdown initiated...
+2026-09-10 22:56:02 -HikariPool-1 - Shutdown completed.
+2026-09-10 22:56:04 -Waiting for workers to finish.
+2026-09-10 22:56:05 -Successfully waited for workers to finish.
+2026-09-10 22:56:05 -Waiting for workers to finish.
+2026-09-10 22:56:06 -Successfully waited for workers to finish.
+2026-09-10 22:56:06 -Shutdown ignored - container is not active already
+2026-09-10 22:56:06 -Shutdown ignored - container is not active already
+2026-09-10 22:56:11 -Shutting down ExecutorService 'applicationTaskExecutor'

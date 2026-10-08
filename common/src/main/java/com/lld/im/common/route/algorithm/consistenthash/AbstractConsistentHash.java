@@ -7,6 +7,8 @@ import java.util.List;
 
 public abstract class AbstractConsistentHash {
 
+    private static final int VirtualNodeNum=100;
+
     //add
     protected abstract void add(long key,String value);
 
@@ -30,7 +32,9 @@ public abstract class AbstractConsistentHash {
     protected synchronized String process(List<String> values, String key){
         processBefore();
         for(String value : values){
-            add(hash(value), value);
+            for (int i = 0; i < VirtualNodeNum; i++) {
+                add(hash(value + i),value);
+            }
         }
         sort();
         return getFirstNodeValue(key);

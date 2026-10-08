@@ -29,7 +29,7 @@ public class SessionSocketHolder {
         dto.setUserId(userId);
         dto.setClientType(clientType);
         dto.setImei(imei);
-        CHANNELS.put(dto,channel);
+        CHANNELS.put(dto, channel);
     }
 
     public static NioSocketChannel get(Integer appId,String userId,Integer clientType,String imei){

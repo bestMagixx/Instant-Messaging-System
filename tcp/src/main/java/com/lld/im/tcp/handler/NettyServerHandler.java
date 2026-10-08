@@ -134,7 +134,6 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<Message> {
             SessionSocketHolder.removeUserSession((NioSocketChannel) ctx.channel());
         }else if(command == SystemCommand.PING.getCommand()){
             ctx.channel().attr(AttributeKey.valueOf(Constants.ReadTime)).set(System.currentTimeMillis());
-
         }else if(command == MessageCommand.MSG_P2P.getCommand() ||
             command == GroupEventCommand.MSG_GROUP.getCommand()){
 
@@ -151,6 +150,8 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<Message> {
                 req.setFromId(jsonObject.getString("fromId"));
 
                 //调用消息校验方的接口
+                //如果成功投递到mq
+                //失败则直接ack
                 ResponseVO responseVO = feignMessageService.checkSendMessage(req);
                 System.out.println("[" + System.currentTimeMillis() + "]:远程调用消息校验");
                 if(responseVO.isOk()){
@@ -172,8 +173,6 @@ public class NettyServerHandler extends SimpleChannelInboundHandler<Message> {
                     ack.setCommand(ackCommand);
                     ctx.channel().writeAndFlush(ack);
                 }
-                //如果成功投递到mq
-                //失败则直接ack
             } catch (Exception e) {
                 e.printStackTrace();
             }

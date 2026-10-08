@@ -47,7 +47,7 @@ spring:
     allow-circular-references: true
 
 appConfig:
-  privateKey: ${zookeeper.password}
+  privateKey:
   zkAddr: ${zookeeper.address}:2181 #zk连接地址
   zkConnectTimeOut: 10000 #zk超时时间
   imRouteWay: 2 #路由策略1.随机  2.轮询  3.一致性hash

@@ -34,7 +34,7 @@ public class HeartBeatHandler extends ChannelInboundHandlerAdapter {
                 long now = System.currentTimeMillis();
 
                 if(lastReadTime != null && now - lastReadTime > heartBeatTime){
-                    //TODO 退后台逻辑
+                    //退后台逻辑
                     SessionSocketHolder. offlineUserSession((NioSocketChannel) ctx.channel());
                 }
 

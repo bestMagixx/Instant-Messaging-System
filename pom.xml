@@ -32,6 +32,7 @@
         <snakeyaml.version>1.27</snakeyaml.version>
         <protostuff-api>1.0.10</protostuff-api>
         <zkClient.version>0.1</zkClient.version>
+        <curator.version>2.13.0</curator.version>
         <apache.httpclient.version>4.5.9</apache.httpclient.version>
         <rabbit.client.version>5.6.0</rabbit.client.version>
         <apache.commons.version>3.12.0</apache.commons.version>
@@ -178,6 +179,12 @@
             <version>${mybatis-plus.version}</version>
         </dependency>
 
+        <!-- curator：ZooKeeper 客户端高级封装（临时节点、子节点监听 TreeCache/PathChildrenCache） -->
+        <dependency>
+            <groupId>org.apache.curator</groupId>
+            <artifactId>curator-recipes</artifactId>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>
@@ -285,6 +292,20 @@
                 <groupId>com.github.sgroschupf</groupId>
                 <artifactId>zkclient</artifactId>
                 <version>${zkClient.version}</version>
+            </dependency>
+
+            <!-- curator：ZooKeeper 客户端高级封装，用于临时节点管理与子节点监听 -->
+            <dependency>
+                <groupId>org.apache.curator</groupId>
+                <artifactId>curator-recipes</artifactId>
+                <version>${curator.version}</version>
+            </dependency>
+
+            <!-- zookeeper：钉死为 3.4.6，覆盖 zkclient 0.1 传递引入的 3.3.3，避免与 Curator 2.13.0 冲突 -->
+            <dependency>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>3.4.6</version>
             </dependency>
 
             <!-- feign调用依赖 -->

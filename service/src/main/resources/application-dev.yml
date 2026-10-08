@@ -1,0 +1,12 @@
+# application-dev.yml
+mysql:
+  password: t5y6q1p0 # 改成你本地mysql root密码
+
+redis:
+  address: 192.168.74.128
+  password:  # 如果redis无密码，留空即可
+
+zookeeper:
+  address: 192.168.74.128
+  password: # zookeeper默认没有密码，空着
+

@@ -1,14 +1,21 @@
 package com.lld.im.tcp;
 
 
+import com.lld.im.common.constant.Constants;
 import com.lld.im.tcp.receiver.MessageReceiver;
 import com.lld.im.tcp.redis.RedisManager;
 import com.lld.im.tcp.register.RegistryZK;
+import com.lld.im.tcp.register.UnRegistryZK;
 import com.lld.im.tcp.register.ZKit;
 import com.lld.im.tcp.server.LimServer;
 import com.lld.im.tcp.server.LimWebSocketServer;
 import com.lld.im.tcp.utils.MqFactory;
 import org.I0Itec.zkclient.ZkClient;
+import org.apache.curator.RetryPolicy;
+import org.apache.curator.framework.CuratorFramework;
+import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.framework.state.ConnectionState;
+import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.yaml.snakeyaml.Yaml;
@@ -65,13 +72,34 @@ public class Starter {
     public static  void registerZK(BootstrapConfig config) throws UnknownHostException {
         String hostAddress = InetAddress.getLocalHost().getHostAddress();
         System.err.println(config.getLim().getZkConfig().getZkAddr());
-        ZkClient zkClient = new ZkClient(config.getLim().getZkConfig().getZkAddr(),
-                config.getLim().getZkConfig().getZkConnectTimeOut());
-        ZKit zKit = new ZKit(zkClient);
-        RegistryZK registryZK = new RegistryZK(zKit, hostAddress, config.getLim());
+//        ZkClient zkClient = new ZkClient(config.getLim().getZkConfig().getZkAddr(),
+//                config.getLim().getZkConfig().getZkConnectTimeOut());
+        RetryPolicy retry = new ExponentialBackoffRetry(1000, 3);
+        CuratorFramework curator = CuratorFrameworkFactory.builder()
+                .connectString(config.getLim().getZkConfig().getZkAddr())
+                .namespace(Constants.ImCoreZkRoot)   // 之后所有路径都相对该根，等价于 /im-coreRoot
+                .retryPolicy(retry)
+                .sessionTimeoutMs(60_000)   // 会话超时，决定临时节点存活窗口
+                .connectionTimeoutMs(15_000)
+                .build();
+//        ZKit zKit = new ZKit(zkClient);
+        curator.start();
+        ZKit.zKit = new ZKit(curator);
+        RegistryZK registryZK = new RegistryZK(ZKit.zKit, hostAddress, config.getLim());
         Thread thread = new Thread(registryZK);
-        thread.start();
+        curator.getConnectionStateListenable().addListener((c, state) -> {
+            if (state == ConnectionState.RECONNECTED) {
+                try {
+                    thread.start();
+                }
+                catch (Exception e) {
+                    System.out.println("Session reconnected, but failed");
+                }
+            }
+        });
 
+        // 关机钩子：主动删节点 + 关会话，service 侧 TreeCache 立刻感知下线
+        Runtime.getRuntime().addShutdownHook(new Thread(new UnRegistryZK(ZKit.zKit, hostAddress, config.getLim())));
     }
 
 }

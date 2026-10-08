@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -65,9 +66,9 @@ public class ImUserController {
             List<String> allNode;
             //TODO 去zk获取一个im的地址，返回给sdk
             if(req.getClientType() == ClientType.WEB.getCode()){
-                allNode = zKit.getAllWebNode();
+                allNode = new ArrayList<>(zKit.getAllWebNode());
             }else{
-                allNode = zKit.getAllTcpNode();
+                allNode = new ArrayList<>(zKit.getAllTcpNode());
             }
 
             //ip:port
